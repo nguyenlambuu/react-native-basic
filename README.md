@@ -1,3 +1,1 @@
-# react-native-basic
-# react-native-basic
-# react-native-basic
+# Learn React Native from scratch
