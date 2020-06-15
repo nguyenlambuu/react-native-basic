@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, View, StyleSheet, TouchableHighlight, Text } from 'react-native';
+import { COLORS } from '../constants/styles';
 
 class ModalComponent extends Component<any> {
   state = {
@@ -18,21 +19,21 @@ class ModalComponent extends Component<any> {
     const { modalVisible } = this.state;
     return (<View style={styles.centeredView}>
       <Modal
-        animationType="slide"
+        animationType="fade"
         transparent={true}
         visible={modalVisible}
       >
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-
+            {/* <Text style={styles.modalText}>Hello World!</Text> */}
+            {this.props.children}
             <TouchableHighlight
-              style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+              style={styles.btnClose}
               onPress={() => {
                 this.setModalVisible(false);
               }}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              <Text style={{ color: COLORS.DARK }}>X</Text>
             </TouchableHighlight>
           </View>
         </View>
@@ -47,12 +48,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    marginTop: 50
   },
   modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
+    margin: 10,
+    backgroundColor: COLORS.LIGHT,
     padding: 35,
     alignItems: "center",
     shadowColor: "#000",
@@ -62,22 +62,18 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
+    elevation: 5,
+    borderWidth: 2,
+    borderColor: COLORS.PRIMARY
   },
   modalText: {
     marginBottom: 15,
     textAlign: "center"
+  },
+  btnClose: {
+    position: 'absolute',
+    top: 10,
+    right: 10
   }
 });
 
